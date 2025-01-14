@@ -1,0 +1,13 @@
+/* main header - used for all pages  */
+
+.topHeader {
+    background-color: bisque;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.titleBox {
+    background-color: teal;
+    padding: 20px;
+}
