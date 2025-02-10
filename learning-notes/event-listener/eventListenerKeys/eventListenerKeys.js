@@ -10,11 +10,13 @@ document.addEventListener("keyup", event => {
     myBox.textContent = event.key
     if (event.key === "Backspace") {
         resultString = resultString.substring(0, resultString.length - 1)
-    } else if
+    }
+    else if
         (event.key === "Shift") {
-        resultString = resultString.substring(0, resultString.length - 6) + resultString.slice(resultString.length - 1, resultString.length);
-        // resultString = resultString + resultString.slice(resultString.length - 2, resultString.length) this just repeats string
-    } else {
+        // resultString = resultString.substring(0, resultString.length - 6) + resultString.slice(resultString.length - 1, resultString.length);
+        // resultString = resultString + resultString.slice(resultString.length - 2, resultString.length) //this just repeats string
+    }
+    else {
         resultString = resultString + event.key;
     }
 
@@ -22,13 +24,16 @@ document.addEventListener("keyup", event => {
     document.getElementById("noComma").textContent = resultString;
 });
 
-document.addEventListener("keydown", event => {
-    console.log(`key down = ${event.key}`);
-    if (event.key === "Shift") {
-        myBox.textContent = "";
-        resultString = resultString + event.key.toUpperCase();
-    }
-});
+// document.addEventListener("keydown", event => {
+//     console.log(`key down = ${event.key}`);
+//     if (event.key === "Shift") {
+//         myBox.textContent = "";
+//         console.log("monitoring keypress" + event.key)
+
+//         resultString = resultString + event.key.toUpperCase();
+//         console.log("result string", resultString)
+//     }
+// });
 
 // want to capitalise - do an If statement with Shift key and resultString to uppercase also have to not put shift onto screen
 

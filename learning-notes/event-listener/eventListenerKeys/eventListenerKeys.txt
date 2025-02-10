@@ -1,0 +1,1 @@
+As well as learning about key up and key down methods I have learnt about the slice() and substring() method! 

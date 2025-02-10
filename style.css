@@ -11,3 +11,30 @@
     background-color: teal;
     padding: 20px;
 }
+/* Boyd sections  */
+.mainSurround {
+    background-color: teal;
+    padding: 20px;
+    
+}
+
+.mainInside {
+    background-color: bisque;
+    
+}
+
+
+
+.inputDiv {
+    background-color: turquoise;
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+textarea {
+    width: 80%;
+    
+}

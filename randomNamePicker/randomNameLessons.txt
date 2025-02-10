@@ -1,0 +1,20 @@
+What did I do independently? 
+
+Create functions
+Create variables including string and integer
+Used .push() method to add elements to a list 
+Used some DOM manipulation, including innerHTML, 
+create a navbar element that navigates between pages
+picked a random name from a list - by using Math.random
+
+What did I learn? 
+About building components of a webpage using JS 
+capturing user input - using text area to get multiple rows 
+.split - method to separate user input into seperate strings 
+
+
+Where are opportunites for future learning? 
+setAttribute - 
+Creating DOM elements - 
+Appending child - 
+creating and using objects - 

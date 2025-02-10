@@ -1,0 +1,23 @@
+* {
+  margin: 20px;
+}
+
+.nameDiv1 {
+    border: solid 1px blue;
+    background-color: orange;
+    color: black;
+    font-weight: bolder;
+    display: flex;
+    font-size: x-large;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+p {
+  background-color: orange;
+  height: auto;
+  width: auto;
+  border: solid black 1px;
+  padding: 15px;
+  margin: 10px;
+}
