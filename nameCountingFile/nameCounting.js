@@ -75,9 +75,10 @@ document.getElementById("uniqueItems").onclick = function () {
 
         }
 
-
+        let countItemArea = document.getElementById("duplicationCount").innerHTML = "";
         for (let z = 0; z < metaArray.length; z++) {
             metaArray[z][0] + "~" + metaArray[z].length;
+
 
 
             for (items in metaArray[z][0]) {
