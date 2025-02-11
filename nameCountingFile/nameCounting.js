@@ -52,46 +52,52 @@ document.getElementById("uniqueItems").onclick = function () {
 
     }
 
-    for (let i = 0; i < uniqueArray.length; i++) {
-        let interimArray = [];
-        for (let j = 0; j < tempList.length; j++) {
-            if (uniqueArray[i] === tempList[j]) {
-                console.log(tempList[j] + "repeated: ")
-                interimArray.push(tempList[j])
+
+    document.getElementById("countUniqueItems").onclick = function () {
+        document.getElementById("duplicationCount").innerHTML = "";
+
+
+        for (let i = 0; i < uniqueArray.length; i++) {
+            let interimArray = [];
+            for (let j = 0; j < tempList.length; j++) {
+                if (uniqueArray[i] === tempList[j]) {
+                    console.log(tempList[j] + "repeated: ")
+                    interimArray.push(tempList[j])
 
 
 
+                }
             }
-        }
-        console.log(interimArray.length + "times")
-        metaArray.push(interimArray);
+            console.log(interimArray.length + "times")
+            metaArray.push(interimArray);
 
+
+
+        }
+
+
+        for (let z = 0; z < metaArray.length; z++) {
+            metaArray[z][0] + "~" + metaArray[z].length;
+
+
+            for (items in metaArray[z][0]) {
+                countItemArea = document.createElement("li");
+                countItemArea.innerHTML = metaArray[z][0] + " is repeated " + metaArray[z].length + " times";
+                document.getElementById("duplicationCount").appendChild(countItemArea)
+            }
+            // document.getElementById("duplucationCount").innerHTML = duplicateCount;
+            console.log(metaArray[z][0] + "~" + metaArray[z].length);
+
+
+            // document.getElementById("duplicationCount").innerHTML = metaArray[z][0];
+            // console.log(metaArray[z][0] + "~" + metaArray[z].length);
+
+        }
 
 
     }
-
-
-    for (let z = 0; z < metaArray.length; z++) {
-        metaArray[z][0] + "~" + metaArray[z].length;
-
-
-        for (items in metaArray[z][0]) {
-            countItemArea = document.createElement("li");
-            countItemArea.innerHTML = metaArray[z][0] + " is repeated " + metaArray[z].length + " times";
-            document.getElementById("duplicationCount").appendChild(countItemArea)
-        }
-        // document.getElementById("duplucationCount").innerHTML = duplicateCount;
-        console.log(metaArray[z][0] + "~" + metaArray[z].length);
-
-
-        // document.getElementById("duplicationCount").innerHTML = metaArray[z][0];
-        // console.log(metaArray[z][0] + "~" + metaArray[z].length);
-
-    }
-
 
 }
-
 
 
 // }
