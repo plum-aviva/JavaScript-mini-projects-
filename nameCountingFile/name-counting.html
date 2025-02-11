@@ -28,11 +28,19 @@
 
             <div class="inputDiv">
             <label for="listInput">List Input: </label>
-            <textarea id="listInput" class="listInput" placeholder="Put your list here"></textarea>
+            <textarea aria-placeholder="list here" id="listInput" type="text" class="listInput" placeholder="Put your list here"></textarea>
+            <button id="submitFullList">Submit list</button>
+
+            <ol id="listArea"></ol>
+
+            <button id="uniqueItems">see unique items</button>
+            <ol id="uniqueItemArea"></ol>
             
             
 
         </main>
+
+        <ol id="duplicationCount"></ol>
     </div>
 
         <script src="nameCounting.js"></script>
