@@ -36,3 +36,24 @@ document.getElementById("changeToString").onclick = function () {
             break;
     }
 }
+
+
+let username;
+
+document.getElementById("hiddenPageArea").onclick = function () {
+    while (username !== "Plum") {
+        username = window.prompt("enter username");
+    }
+    document.getElementById("hiddenPage").innerHTML = "here it is";
+    document.getElementById("hiddenPageLink").removeAttribute("hidden");
+}
+
+
+
+
+document.getElementById("hiddenPageRedirect").onclick = function () {
+    while (username !== "Plum") {
+        username = window.prompt("enter username");
+    }
+    location.replace("hiddenPage.html")
+}
