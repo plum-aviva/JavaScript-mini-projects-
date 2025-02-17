@@ -11,7 +11,7 @@ let fullListArray = []
 
 // const things = new Map();
 
-let metaArray = [];
+
 
 // this is a way of accessing the button - and getting the button to perform function
 document.getElementById("submitFullList").onclick = function () {
@@ -55,7 +55,7 @@ document.getElementById("uniqueItems").onclick = function () {
 
     document.getElementById("countUniqueItems").onclick = function () {
         document.getElementById("duplicationCount").innerHTML = "";
-
+        let metaArray = [];
 
         for (let i = 0; i < uniqueArray.length; i++) {
             let interimArray = [];

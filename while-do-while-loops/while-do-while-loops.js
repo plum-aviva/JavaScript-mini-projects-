@@ -15,7 +15,7 @@ let spelling2 = "";
 // let letterArray = [...spelling2]
 
 
-let animal;
+let animal = "dog"
 document.getElementById("doWhileLoop1").onclick = function () {
     do {
         animal = window.prompt(`Enter animal name`);
@@ -32,6 +32,8 @@ let input = "";
 document.getElementById("changeToString").onclick = function () {
     while (true) {
         input = window.prompt("enter a number");
+        console.log(isNaN(7))
+        console.log(isNaN("a"))
         if (!isNaN(input))
             break;
     }
@@ -56,4 +58,4 @@ document.getElementById("hiddenPageRedirect").onclick = function () {
         username = window.prompt("enter username");
     }
     location.replace("hiddenPage.html")
-}
+} 
