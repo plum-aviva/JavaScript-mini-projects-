@@ -36,48 +36,62 @@ const feedback = document.getElementById("resultElement");
 let livesLeft = document.getElementById("lives");
 let lives = 5;
 livesLeft.innerHTML = `lives left: ${lives}`;
+let letterbox = ""
 
 submitGuess.onclick = function () {
+
     guess = wordGuess.value;
     let answer = "cat";
     let answerArray = Array.from(answer);
-    let answerArea = document.getElementById("answer").innerHTML = answerArray;
-    for (i = 0; i < answerArray.length; i++) {
-        spantag = document.createElement("span");
-
-        document.getElementById().appendChild(spantag);
-
-        console.log(answerArea[i]);
-    }
-    console.log(answerArray);
+    let answerArea = document.getElementById("answer").innerHTML = answerArray + " the answer";
 
 
+    for (letters in answerArray) {
+        console.log(answerArray);
+        letterbox = document.createElement("span");
+        letterbox.setAttribute("id", `${letters}`);
+
+        let getId = letterbox.getAttribute("id");
+        console.log(getId + " id here");
+
+        let letterBoxText = document.createTextNode(answerArray[letters]);
+        letterbox.appendChild(letterBoxText);
 
 
-    if (lives > 0) {
-
-        if (answerArray.includes(guess)) {
-            feedback.innerHTML = "yes";
-            for (i = 0; i < answerArea.length; i++) {
-                if (guess === answerArray[i]) {
-                    answerIndex = answerArray.indexOf(answerArray[i]);
-                    console.log(answerIndex);
-
-                    spantag.innerHTML = answerArray[i];
-
-                }
-            }
-
-        } else {
-            feedback.innerHTML = "no";
-            lives--;
-            livesLeft.innerHTML = `lives left: ${lives}`;
-
-            console.log(livesLeft);
+        document.getElementById("guessDiv").appendChild(letterbox);
+        if (guess === answerArray[letters]) {
+            answerIndex = answerArray.indexOf(answerArray[i]);
+            document.getElementById(`${letters}`).style.backgroundColor = "white";
 
         }
-    } else {
-        livesLeft.innerHTML = "run out of lives";
-    }
+        console.log(answerArray);
 
+
+        if (lives > 0) {
+
+            if (answerArray.includes(guess)) {
+
+                for (i = 0; i < answerArea.length; i++) {
+                    if (guess === answerArray[i]) {
+                        answerIndex = answerArray.indexOf(answerArray[i]);
+                        console.log(answerIndex);
+
+                        feedback.innerHTML = answerArray[i] + "  correct letter";
+
+                    }
+                }
+
+            } else {
+                feedback.innerHTML = "no";
+                lives--;
+                livesLeft.innerHTML = `lives left: ${lives}`;
+
+                console.log(livesLeft);
+
+            }
+        } else {
+            livesLeft.innerHTML = "run out of lives";
+        }
+
+    }
 }

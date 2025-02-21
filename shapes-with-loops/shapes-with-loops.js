@@ -9,7 +9,11 @@ submitChoice = document.getElementById("submitButton");
 levelChoice1 = document.getElementById("levelInputa");
 submitChoice1 = document.getElementById("submitButtona");
 
+levelChoice2 = document.getElementById("levelInputb");
+submitChoice2 = document.getElementById("submitButtonb");
 
+levelChoice3 = document.getElementById("levelInputc");
+submitChoice3 = document.getElementById("submitButtonc");
 
 
 
@@ -38,6 +42,8 @@ submitChoice.onclick = function () {
 
 }
 
+// now same with do while loop - with input box 
+
 submitChoice1.onclick = function () {
     document.getElementById("div1a").innerHTML = "";
     let i = 0;
@@ -49,13 +55,13 @@ submitChoice1.onclick = function () {
         //new line
         while (i >= j) {
             let span = document.createElement("span");
-            let spanText = document.createTextNode("🐣");
+            let spanText = document.createTextNode(` innerloop - j = ${j} and i = ${i} so 2nd condition is true`);
             span.appendChild(spanText);
             document.getElementById("div1a").appendChild(span);
             j++;
         }
         let para = document.createElement("p");
-        let paraText = document.createTextNode("");
+        let paraText = document.createTextNode(`outerloop - j = ${j} and i = ${i} so 2nd condition is false`);
         para.appendChild(paraText);
         document.getElementById("div1a").appendChild(para);
         j = 0;
@@ -63,6 +69,134 @@ submitChoice1.onclick = function () {
     }
 
 }
+
+
+
+submitChoice2.onclick = function () {
+    document.getElementById("div1b").innerHTML = "";
+
+    let i = 0;
+
+    do {
+        let para = document.createElement("p");
+        let paraText = document.createTextNode(`I am outer loop  i = ${i} 🥸`);
+        para.appendChild(paraText);
+        console.log(levelChoice2);
+        document.getElementById("div1b").appendChild(para);
+        i++; // increment i to move to the next row
+        console.log(levelChoice2);
+    } while (i <= levelChoice2.value);
+
+
+
+    let k = 0;
+
+    do {
+        let j = 0;
+
+        do {
+            let span = document.createElement("span");
+            let spanText = document.createTextNode(`I am inner loop - i = ${k} j = ${j} 🦔`);
+            span.appendChild(spanText);
+            document.getElementById("div1b").appendChild(span);
+            j++; // increment j to move to the next colun
+        } while (j <= k); // continue inner loop intil j <= i
+
+
+        let para = document.createElement("p");
+        let paraText = document.createTextNode(`I am outer loop  i = ${k} j = ${j} 🧚`);
+        para.appendChild(paraText);
+        console.log(levelChoice2);
+        document.getElementById("div1b").appendChild(para);
+        k++; // increment i to move to the next row
+        console.log(levelChoice2);
+    } while (k < levelChoice2.value);
+
+    let l = 0;
+
+    do {
+        let j = levelChoice2.value;
+
+        do {
+            let span = document.createElement("span");
+            let spanText = document.createTextNode(`I am inner loop - i = ${l} j = ${j} 🐸`);
+            span.appendChild(spanText);
+            document.getElementById("div1b").appendChild(span);
+            j--; // increment j to move to the next colun
+        } while (j >= l); // continue inner loop intil j <= i
+
+
+        let para = document.createElement("p");
+        let paraText = document.createTextNode(`I am outer loop  i = ${l} j = ${j} 🧚`);
+        para.appendChild(paraText);
+        console.log(levelChoice2);
+        document.getElementById("div1b").appendChild(para);
+        l++; // increment i to move to the next row
+        console.log(levelChoice2);
+    } while (l <= levelChoice2.value);
+}
+
+
+
+submitChoice3.onclick = function () {
+    document.getElementById("div1c").innerHTML = "";
+
+    for (let i = 0; i <= levelChoice3.value; i++) {
+        let para = document.createElement("p");
+        let paraText = document.createTextNode(`I am outer loop  i = ${i} 🌞`);
+        para.appendChild(paraText);
+        console.log(levelChoice3);
+        document.getElementById("div1c").appendChild(para);
+        console.log(levelChoice3);
+    }
+
+
+    for (let k = 0, j = 0; k <= levelChoice3.value; k++) {
+
+        for (let j = 0; j <= k; j++) {
+            lastj = j;
+            let span = document.createElement("span");
+            let spanText = document.createTextNode(`I am inner loop - i = ${k} j = ${j} 🦔`);
+            span.appendChild(spanText);
+            document.getElementById("div1c").appendChild(span);
+        }
+        let para = document.createElement("p");
+        let paraText = document.createTextNode(`I am outer loop  i = ${k} j = ${j} 🦕`); //can't define j here
+        para.appendChild(paraText);
+        console.log(levelChoice3);
+        document.getElementById("div1c").appendChild(para);
+
+        console.log(levelChoice3);
+
+    }
+
+    for (let l = 0, j = levelChoice3.value; l <= j; l++) {
+        for (let j = levelChoice3.value; j >= l; j--) {
+            let span = document.createElement("span");
+            let spanText = document.createTextNode(`I am inner loop - i = ${l} j = ${j}🐣 `);
+            span.appendChild(spanText);
+            document.getElementById("div1c").appendChild(span);
+        }
+        let para = document.createElement("p");
+        let paraText = document.createTextNode(`I am outer loop  i = ${l} j= ${j} 🦕🐨`);
+        para.appendChild(paraText);
+        console.log(levelChoice3);
+        document.getElementById("div1c").appendChild(para);
+
+        console.log(levelChoice3);
+    }
+
+}
+
+
+
+
+
+
+
+
+console.log(levelChoice2);
+
 
 
 
