@@ -7,14 +7,51 @@
     <link href="/switch_if-else/switch_if-else.css" rel="stylesheet" />
   </head>
   <body>
-    <label>Enter a word:</label><br />
-    <input type="text" id="inputWord" /><br />
-    <button type="submit" id="mySubmit">submit</button>
-    <p id="answer"></p>
-    <p id="resultElement"></p>
-    <p id="guessDiv"></p>
-    <p id="correctGuessArea"></p>
+    <button id="startGame">Start Game</button> <br />
+
+    <h1>Answer Area</h1>
+    <div id="answerArea"></div>
+
+    <h1>Guess Selection</h1>
+    <label for="letterChoice">Guess a letter</label>
+    <select name="letterChoice" id="letterChoice">
+      <option value="a">a</option>
+      <option value="b">b</option>
+      <option value="c">c</option>
+      <option value="d">d</option>
+      <option value="e">e</option>
+      <option value="f">f</option>
+      <option value="g">g</option>
+      <option value="h">h</option>
+      <option value="i">i</option>
+      <option value="j">j</option>
+      <option value="k">k</option>
+      <option value="l">l</option>
+      <option value="m">m</option>
+      <option value="n">n</option>
+      <option value="o">o</option>
+      <option value="p">p</option>
+      <option value="q">q</option>
+      <option value="r">r</option>
+      <option value="s">s</option>
+      <option value="t">t</option>
+      <option value="u">u</option>
+      <option value="v">v</option>
+      <option value="w">w</option>
+      <option value="x">x</option>
+      <option value="y">y</option>
+      <option value="z">z</option>
+    </select>
+    <button id="submitChoice" type="submit">Submit guess</button>
+
+    <h1>Incorrect Guesses</h1>
+    <p id="feedbackArea"></p>
+
+    <h1>Lives left</h1>
     <p id="lives"></p>
+
+    <h1 id="result"></h1>
+
     <script src="switch_if-else.js"></script>
   </body>
 </html>

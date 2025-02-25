@@ -1,97 +1,108 @@
-// let day = 1;
+// set some variables 
+// word answer needs to work accross the scope of the page
+const answerArrayList = [
+    "apple",
+    "grape",
+    "beach",
+    "cloud",
+    "pearl",
+    "stone",
+    "flame",
+    "grass",
+    "spark",
+    "drift",
+    "scent",
+    "petal",
+    "shine",
+    "creek",
+    "globe",
+    "frost",
+    "bloom",
+    "quake",
+    "brave",
+    "light"
+];
 
-// switch (day) {
-//     case 1:
-//         console.log("it is Monday")
-//         break;
-//     default:
-//         console.log("no such day")
-// }
+let answer = ""
+let correctAnswers = [] // area to store correct answers
+let wrongAnswers = [] // area to store wrong answers 
+let lives = "";
+let score = "";
 
-// let testscore = 92;
-// let letterGrade;
+document.getElementById("startGame").onclick = function () {
+    document.getElementById("answerArea").innerHTML = "";
+    lives = 10;
+    document.getElementById("lives").innerHTML = lives;
 
-// switch (true) {
-//     case testScore >= 90:
-//         letterGrade = "A";
-//         break;
-//     case testScore >= 70;
-//         letterGrade = "B";
-//         break
-//     default:
-//         letterGrade = "F"
-// }
 
-// let age = 25;
+    let ranWord = Math.floor(Math.random() * answerArrayList.length); // generates a random index
+    answer = answerArrayList[ranWord];
+    console.log(answer + " this is random word");
+    console.log(typeof (answer));
 
-// if (age >= 19) {
-//     console.log("you are an adult");
-// } else {
-//     console.log("you are not an adult");
-// }
-
-const wordGuess = document.getElementById("inputWord");
-const submitGuess = document.getElementById("mySubmit");
-const feedback = document.getElementById("resultElement");
-let livesLeft = document.getElementById("lives");
-let lives = 5;
-livesLeft.innerHTML = `lives left: ${lives}`;
-let letterbox = ""
-
-submitGuess.onclick = function () {
-
-    guess = wordGuess.value;
-    let answer = "cat";
+    // make the word into an array 
     let answerArray = Array.from(answer);
-    let answerArea = document.getElementById("answer").innerHTML = answerArray + " the answer";
-
+    console.log(answerArray);
+    // now make each letter in the array a separate span area - so that the css document can change formatting and hide 
 
     for (letters in answerArray) {
-        console.log(answerArray);
-        letterbox = document.createElement("span");
-        letterbox.setAttribute("id", `${letters}`);
-
-        let getId = letterbox.getAttribute("id");
-        console.log(getId + " id here");
-
+        letterBox = document.createElement("span");
+        letterBox.setAttribute("id", `${letters}`);
         let letterBoxText = document.createTextNode(answerArray[letters]);
-        letterbox.appendChild(letterBoxText);
-
-
-        document.getElementById("guessDiv").appendChild(letterbox);
-        if (guess === answerArray[letters]) {
-            answerIndex = answerArray.indexOf(answerArray[i]);
-            document.getElementById(`${letters}`).style.backgroundColor = "white";
-
-        }
-        console.log(answerArray);
-
-
-        if (lives > 0) {
-
-            if (answerArray.includes(guess)) {
-
-                for (i = 0; i < answerArea.length; i++) {
-                    if (guess === answerArray[i]) {
-                        answerIndex = answerArray.indexOf(answerArray[i]);
-                        console.log(answerIndex);
-
-                        feedback.innerHTML = answerArray[i] + "  correct letter";
-
-                    }
-                }
-
-            } else {
-                feedback.innerHTML = "no";
-                lives--;
-                livesLeft.innerHTML = `lives left: ${lives}`;
-
-                console.log(livesLeft);
-
-            }
-        } else {
-            livesLeft.innerHTML = "run out of lives";
-        }
+        letterBox.appendChild(letterBoxText);
+        document.getElementById("answerArea").appendChild(letterBox);
+        console.log(letterBox);
 
     }
 }
+
+//guess a letter 
+// get selection and store in a variable - submit button function
+document.getElementById("submitChoice").onclick = function () {
+
+    let guess = document.getElementById("letterChoice").value;
+    console.log(guess);
+    let answerArray = Array.from(answer);
+
+
+    for (letters in answerArray) {
+
+        let letterBox = document.getElementById(letters);
+
+        if (answerArray[letters].includes(guess)) {
+
+
+
+            rightGuess = document.getElementById(letterBox.id);
+            rightGuess.style.backgroundColor = "pink";
+
+            correctAnswers.push(rightGuess);
+
+
+
+        } if (correctAnswers.length === answerArray.length) {
+            document.getElementById("result").innerHTML = `You win - the correct answer is ${answer}`;
+        }
+    }
+
+
+    if (!answerArray.includes(guess)) {
+        wrongAnswers.push(guess)
+        document.getElementById("feedbackArea").innerHTML = wrongAnswers;
+        lives--
+        document.getElementById("lives").innerHTML = lives;
+        if (lives < 1) {
+            alert(`the word was ${answer} better luck next time!`)
+        }
+
+
+    } let options = document.getElementById("letterChoice");
+    for (let i = options.length - 1; i >= 0; i--) {
+
+        if (options[i].value === guess) {
+            options.removeChild(options[i]);
+        }
+    }
+}
+
+
