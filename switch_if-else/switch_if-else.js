@@ -1,27 +1,32 @@
 // set some variables 
 // word answer needs to work accross the scope of the page
-const answerArrayList = [
-    "apple",
-    "grape",
-    "beach",
-    "cloud",
-    "pearl",
-    "stone",
-    "flame",
-    "grass",
-    "spark",
-    "drift",
-    "scent",
-    "petal",
-    "shine",
-    "creek",
-    "globe",
-    "frost",
-    "bloom",
-    "quake",
-    "brave",
-    "light"
-];
+// const answerArrayList = [
+//     "apple",
+//     "grape",
+//     "beach",
+//     "cloud",
+//     "pearl",
+//     "stone",
+//     "flame",
+//     "grass",
+//     "spark",
+//     "drift",
+//     "scent",
+//     "petal",
+//     "shine",
+//     "creek",
+//     "globe",
+//     "frost",
+//     "bloom",
+//     "quake",
+//     "brave",
+//     "light"
+// ];
+
+// let ranWord = Math.floor(Math.random() * answerArrayList.length); // generates a random index
+//     // answer = answerArrayList[ranWord];
+
+
 
 let answer = ""
 let correctAnswers = [] // area to store correct answers
@@ -34,26 +39,50 @@ document.getElementById("startGame").onclick = function () {
     lives = 10;
     document.getElementById("lives").innerHTML = lives;
 
+    // call word from API 
 
-    let ranWord = Math.floor(Math.random() * answerArrayList.length); // generates a random index
-    answer = answerArrayList[ranWord];
-    console.log(answer + " this is random word");
-    console.log(typeof (answer));
+    const apiUrl = 'https://random-word-api.herokuapp.com/word?length=7'
 
-    // make the word into an array 
-    let answerArray = Array.from(answer);
-    console.log(answerArray);
-    // now make each letter in the array a separate span area - so that the css document can change formatting and hide 
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network was not okay');
+            }
+            return response.json();
 
-    for (letters in answerArray) {
-        letterBox = document.createElement("span");
-        letterBox.setAttribute("id", `${letters}`);
-        let letterBoxText = document.createTextNode(answerArray[letters]);
-        letterBox.appendChild(letterBoxText);
-        document.getElementById("answerArea").appendChild(letterBox);
-        console.log(letterBox);
+        })
+        .then(data => {
+            console.log(data);
 
-    }
+            let arr = []
+            for (let key in response) {
+                arr.push(response[key]);
+            }
+            console.log(arr);
+
+            // let answerArray = Array.from();
+
+
+        })
+        .catch(error => {
+            console.log('Error: ', error)
+
+
+
+            // make the word into an array 
+
+            // now make each letter in the array a separate span area - so that the css document can change formatting and hide 
+
+            for (letters in answerArray) {
+                letterBox = document.createElement("span");
+                letterBox.setAttribute("id", `${letters}`);
+                let letterBoxText = document.createTextNode(answerArray[letters]);
+                letterBox.appendChild(letterBoxText);
+                document.getElementById("answerArea").appendChild(letterBox);
+                console.log(letterBox);
+
+            }
+        });
 }
 
 //guess a letter 
