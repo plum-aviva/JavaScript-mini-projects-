@@ -142,7 +142,7 @@ function itemPrices() {
     let product = ['bread', 'apple', 'pie', 'chocolate', 'beans'];
     let shop = [shopApple, shopBeans, shopBread, shopChocolate, shopPie]
     // let origionalStock = shop[product].stock;
-    let customerLocation = shopPie;
+    let customerLocation = shopChocolate;
 
 
     for (let i = 0; i < shop.length; i++) {
@@ -237,7 +237,7 @@ customer.buygoods = function (answer, product, shop) {
     } else if (shop[product].stock <= 9 && shop[product].stock > 0) {
         shop[product].price = 10;
     } else {
-        shop[product].price = "we have no stock - we cannot sell";
+        return "no sale";
     }
 
 
@@ -276,7 +276,7 @@ customer.buygoods = function (answer, product, shop) {
 
     } else if (customer.moneyTotal < shop[product].price) {
 
-        console.log(`you have ${customer.moneyTotal} that is not enough to buy a item worth ${shop[product].price}`)
+        return `you have ${customer.moneyTotal} that is not enough to buy a item worth ${shop[product].price}`
     }
 
 
@@ -305,12 +305,19 @@ customer.buygoods = function (answer, product, shop) {
     console.log("********************")
     console.log(`the customer started with ${origCustMoney} spent ${shop.moneyTotal} and now has ${customer.moneyTotal}`)
     console.log(`for each ${product} the customer paid ${shop[product].price}`)
+    return "buy successful"
 }
 
 
 
+
+
 // test 1 - the customer has enough for the whole order
-// console.log(customer.buygoods(3, "chocolate", shopPie));
+let buyResult = customer.buygoods(3, "chocolate", shopChocolate)
+console.log(buyResult)
+
+
+
 
 
 customer.sellgoods = function (answer, product, shop) {
@@ -331,7 +338,7 @@ customer.sellgoods = function (answer, product, shop) {
     }
 
 
-    itemPrices();
+    ///put prices code in here - price to distance works 
 
 
     // if customer is selling stock they have   - it will be assumed that shops have enough money 
@@ -358,7 +365,7 @@ customer.sellgoods = function (answer, product, shop) {
 
     } else if (customer[product].stock < 1) {
 
-        console.log(`you have ${customer[product].stock} ${product} you have none to sell`)
+        return `you have ${customer[product].stock} ${product} you have none to sell`
     }
 
 
@@ -374,7 +381,7 @@ customer.sellgoods = function (answer, product, shop) {
     console.log("Shop finances")
     console.log("********************")
     console.log(`each ${product} costs ${shop[product].price}`)
-    console.log(shop[product].stock - origionalStock + " " + product + " = " + customer.moneyTotal)
+    console.log(shop[product].stock - origionalStock + " " + product + " = " + customer.moneyTotal) //check this
     console.log(`the shop started with ${origShopMoney} and now has ${shop.moneyTotal} coins`);
     console.log("---------------------")
     console.log("Customer transaction summary")
@@ -388,13 +395,14 @@ customer.sellgoods = function (answer, product, shop) {
     console.log("********************")
     console.log(`the customer started with ${origCustMoney} gained ${customer.moneyTotal}  and now has ${origCustMoney + customer.moneyTotal} `)
     console.log(`for each ${product} the customer paid ${shop[product].price}`)
+    return "sale successful"
 }
 
 
 
 // test 1 - the customer has enough for the whole order
 // console.log(customer.buygoods(3, "chocolate", shopPie));
-console.log(customer.sellgoods(15, "pie", shopPie));
+console.log(customer.sellgoods(15, "pie", shopChocolate));
 
 
 
