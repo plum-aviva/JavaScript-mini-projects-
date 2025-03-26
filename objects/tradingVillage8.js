@@ -203,7 +203,7 @@ const makeOrderShopBuy = function (shopName, productName, quantity) {
     return totalBuyPrice
 
 };
-console.log(makeOrderShopBuy("Also Apples Shop", "lemon", 5));
+// console.log(makeOrderShopBuy("Also Apples Shop", "lemon", 5));
 
 const makeOrderShopSell = function (shopName, productName, quantity) {
     const shop = findShop(shopName);
@@ -219,14 +219,38 @@ const makeOrderShopSell = function (shopName, productName, quantity) {
     return totalSellPrice
 
 };
-console.log(makeOrderShopSell("Also Apples Shop", "apple", 5));
+// console.log(makeOrderShopSell("Also Apples Shop", "apple", 5));
 
 // next task is to change shop quantity and money according to price and player stock and quantity 
 
-// const playerBuys = function() {
+const completeOrderShopSell = function (shopName, productName, quantity) {
 
-// }
+    const shop = findShop(shopName);
+    const product = findProduct(findShop, shopName, productName);
+    const shopSellsPrice = setSellPrice(findProduct, shopName, productName);
+    const totalSellPrice = makeOrderShopSell(shopName, productName, quantity) //didn't need callback here
 
+
+
+    console.log(shop)
+    console.log(product)
+    console.log(shop.money)
+    console.log(shopSellsPrice)
+    console.log(quantity)
+    console.log(totalSellPrice)
+
+    let shopMoneyChange = shop.money + totalSellPrice;
+    let shopQuantityChange = product.quantity - quantity;
+
+    console.log(shopMoneyChange)
+    console.log(shopQuantityChange)
+
+    return "this worked"
+
+
+}
+
+console.log(completeOrderShopSell("Also Apples Shop", "apple", 20))
 // const playerSells = function() {
 
 
