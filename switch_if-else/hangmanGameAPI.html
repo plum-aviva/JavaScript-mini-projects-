@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hangman</title>
+    <link rel="stylesheet" href="switch_if-else.css" />
+    <script src="hangmanGameAPI.js"></script>
+  </head>
+  <body>
+    <p>fetched word</p>
+    <p id="fetched-word"></p>
+    <p>word as array</p>
+    <p id="wordArray"></p>
+    <p>answerArea</p>
+    <p id="answerArea"></p>
+    <p>guess area</p>
+    <input maxlength="1" id="letterChoice" placeholder="guess a letter" />
+    <button id="submitGuess" onclick="selectLetter()" type="submit">
+      Submit Guess
+    </button>
+    <p>correct guess area</p>
+    <p id="CorrectGuessArea"></p>
+    <p>wrong guess area</p>
+    <p id="WrongGuessArea"></p>
+  </body>
+</html>

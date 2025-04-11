@@ -30,7 +30,6 @@
 
 let answer = ""
 let correctAnswers = [] // area to store correct answers
-let wrongAnswers = [] // area to store wrong answers 
 let lives = "";
 let score = "";
 
@@ -41,7 +40,7 @@ document.getElementById("startGame").onclick = function () {
 
     // call word from API 
 
-    const apiUrl = 'https://random-word-api.herokuapp.com/word?length=7'
+    const apiUrl = 'https://random-word-api.herokuapp.com/word?length=3'
 
     fetch(apiUrl)
         .then(response => {
