@@ -18,6 +18,7 @@ async function getWord() {
 async function wordIntoArray() {
     const answerWord = await getWord()
     wordArray = Array.from(answerWord)
+    console.log(wordArray);
     document.getElementById("wordArray").innerHTML = wordArray
     for (letters in wordArray) {
         letterBox = document.createElement("span");
@@ -32,7 +33,7 @@ async function wordIntoArray() {
 }
 wordIntoArray()
 
-let i = 0;
+let i = 1;
 
 function selectLetter() {
 
@@ -63,7 +64,7 @@ function selectLetter() {
         // let wrongArray = Array.from(uniqueGuess)
         document.getElementById("WrongGuessArea").innerHTML = guess;
     }
-    i++;
+
 }
 
 // }

@@ -1,3 +1,6 @@
+
+//Parked on 27th March - moving onto AJ's stuff 
+
 // I want objects I can loop through
 
 // the aims of this village is to recreate the functionality of the previous code but using two classes (person and products) as the basis for the
@@ -42,52 +45,52 @@ let mainlyMangoStock = [];
 let concurrentlyKiwiStock = [];
 
 // creates player 1
-const player1 = new Person("customer", "Sukant", sukantProducts, 40, 0);
+const player1 = new Person("customer", "Sukant", sukantProducts, 25, 0);
 
 // function to set up the shop
-function setupShop(shopProducts, shopName, money, id, mainProduct) {
+function setupShop(shopName, shopProducts, money, id, mainProduct) {
     return new Person("shop", shopName, shopProducts, money, id, mainProduct);
 }
 
 // uses functions to set up the shops
 const alsoApplesShop = setupShop(
-    alsoAppleStock,
     "Also Apples Shop",
+    alsoAppleStock,
     1000000,
     1,
     "apples",
 );
 const basedOnBananaShop = setupShop(
-    basedOnBananaStock,
     "Based On Banana Shop",
+    basedOnBananaStock,
     10000000,
     2,
     "banana",
 );
 const laterallyLemonShop = setupShop(
-    laterallyLemonStock,
     "Laterally Lemon Shop",
+    laterallyLemonStock,
     10000000,
     3,
     "lemon",
 );
 const mainlyMangoShop = setupShop(
-    mainlyMangoStock,
     "Mainly Mango Shop",
+    mainlyMangoStock,
     10000000,
     4,
     "mango",
 );
 const concurrentlyKiwiShop = setupShop(
-    concurrentlyKiwiStock,
     "Concurrently Kiwi Shop",
+    concurrentlyKiwiStock,
     10000000,
     5,
     "kiwi",
 );
 
 // creates arrays of shop and product names
-let products = [apple, banana, lemon, mango, kiwi];
+// let products = [apple, banana, lemon, mango, kiwi]; Delete if not needed
 let shops = [
     alsoApplesShop,
     basedOnBananaShop,
@@ -116,20 +119,14 @@ pushProducts(concurrentlyKiwiStock);
 
 // find the shop
 const findShop = function (shopName) {
-    const shopChoice = shops.find((shop) => shop.name === shopName);
-    return shopChoice;
+    return shops.find((shop) => shop.name === shopName);
 };
 
-// console.log(findShop("Mainly Mango Shop"));
 // find the item
 const findProduct = function (shopName, productName) {
     const shop = findShop(shopName);
-    const product = shop.products.find((product) => product.name === productName);
-    return product;
+    return shop.products.find((product) => product.name === productName);
 };
-
-// console.log(findProduct(findShop, "Mainly Mango Shop", "apple"));
-// retrieve the item price
 
 
 // set the price the shop will sell for
@@ -137,25 +134,24 @@ const setSellPrice = function (shopName, productName) {
     const product = findProduct(shopName, productName);
     const shop = findShop(shopName);
 
-
-    let shopSells = product.sellPrice
-
-
     if (product.quantity > 30) {
-        shopSells = shopSells + 5;
+        product.sellPrice = product.sellPrice + 5;
     } else if (product.quantity > 15) {
-        shopSells = shopSells + 10;
+        product.sellPrice = product.sellPrice + 10;
     } else if (product.quantity >= 1) {
-        shopSells = shopSells + 15;
+        product.sellPrice = product.sellPrice + 15;
     } else {
-        return "no sale";
+
     }
     let distance = Math.abs(shop.id - product.productId);
-    shopSells = product.sellPrice * distance + 10;
+    product.sellPrice = product.sellPrice + distance;
+    console.log("  This one product.sellPrice is 15 ")
+    console.log(product.sellPrice)
 
-    return shopSells;
+
+    return product.sellPrice;
 };
-// console.log(setSellPrice(findProduct, "Mainly Mango Shop", "apple"));
+// console.log(setSellPrice("Mainly Mango Shop", "mango"));
 
 // set the price the shop will buy for 
 const setBuyPrice = function (shopName, productName) {
@@ -164,138 +160,154 @@ const setBuyPrice = function (shopName, productName) {
 
     // let distance = Math.abs(shop.id - product.productId);
 
-
-    let shopBuys = product.buyPrice
-
-
-
-
     if (product.quantity > 30) {
-        shopBuys = shopBuys + 2;
+        product.buyPrice = product.buyPrice + 2;
     } else if (product.quantity > 15) {
-        shopBuys = shopBuys + 5;
+        product.buyPrice = product.buyPrice + 5;
     } else if (product.quantity >= 1) {
-        shopBuys = shopBuys + 15;
+        product.buyPrice = product.buyPrice + 15;
     } else {
-        shopBuys = shopBuys + 20;
+        product.buyPrice = product.buyPrice + 20;
     }
 
     let distance = Math.abs(shop.id - product.productId);
-    shopBuys = product.buyPrice * distance;
+    product.buyPrice = product.buyPrice + distance;
 
-    return shopBuys;
+    return product.buyPrice;
 };
-// console.log(setBuyPrice(findProduct, "Mainly Mango Shop", "apple"));
+// console.log(setBuyPrice("Mainly Mango Shop", "mango"));
 
 // // put in an order // can you only call find product - rework 
-const makeOrderShopBuy = function (shopName, productName, quantity) {
+const makeOrderShopBuy = function (shopName, productName, orderSize) {
     const shop = findShop(shopName);
     const product = findProduct(shopName, productName);
     const shopBuysPrice = setBuyPrice(shopName, productName);
+    const player1find = findShop(player1);
+    const player1stock = findProduct(player1, productName)
+
+    let totalBuyPrice = shopBuysPrice * orderSize;
+
+    if (player1find.quantity < orderSize) {
+        console.log("you can't sell more than you have")
+        console.log(`you can sell a maximum of ${player1stock.quantity}`)
+        orderSize = player1stock.quantity;
+        totalBuyPrice = player1stock.quantity * shopBuysPrice
+    } else {
+        totalBuyPrice = shopBuysPrice * orderSize;
+    }
+
 
     console.log(`you are in ${shop.name}`);
     console.log(`you want to buy ${product.name}`);
 
-    // add conditions - 
-
-
-
-    let totalBuyPrice = shopBuysPrice * quantity;
-
     console.log("The shop will buy ")
 
-    return totalBuyPrice
+    return {
+        totalBuyPrice: totalBuyPrice,
+        orderSize: orderSize
+    }
 
 };
 // console.log(makeOrderShopBuy("Also Apples Shop", "lemon", 5));
 
-const makeOrderShopSell = function (shopName, productName, quantity) {
+const makeOrderShopSell = function (shopName, productName, orderSize) {
     const shop = findShop(shopName);
-    const product = findProduct(findShop, shopName, productName);
-    const shopSellsPrice = setSellPrice(findProduct, shopName, productName);
+    const product = findProduct(shopName, productName);
+    const shopSellsPrice = setSellPrice(shopName, productName);
 
-    let productsAffordable = quantity - product.quantity;
+    let productsAffordable = Math.floor(player1.money / shopSellsPrice)
 
 
     console.log(`you are in ${shop.name}`);
     console.log(`you want to buy ${product.name}`);
+    let totalSellPrice = shopSellsPrice * orderSize
 
-    let totalSellPrice;
-
-    // if customer asks for less than stock and has enough money for everything // console.log message? 
-    if (product.quantity >= quantity && player1.money >= shopSellsPrice * quantity) {
-        console.log("we can supply total order")
-        totalSellPrice = shopSellsPrice * quantity
-
-        // what if customer either asks for more than shop has or doesn't have enough money 
-
-    } else if (player1.money < shopSellsPrice * quantity && player1.money >= shopSellsPrice && product.quantity >= numberRequired) {
-        // work out the sum for this!!!! 
-        console.log("you can afford some, but not all of the products you want ")
-        console.log(productsAffordable)
-        totalSellPrice = productsAffordable * shopSellsPrice;
-
-
-
-    } else if (quantity > product.quantity && player1.money > shopSellsPrice * product.quantity) {
-        console.log(product.quantity)
-        quantity = product.quantity
-        totalSellPrice = quantity * shopSellsPrice
-        console.log("you have asked for more than we have in stock but you can afford all we have")
+    if (orderSize <= product.quantity && player1.money >= totalSellPrice) {
+        totalSellPrice = shopSellsPrice * orderSize
+        console.log("The first condition works")
+        console.log(totalSellPrice)
         return {
-            quantity: quantity,
+            orderSize: orderSize,
             totalSellPrice: totalSellPrice
-        };
+        }
+    } else if (player1.money < totalSellPrice) {
+        console.log("not enough money")
+        orderSize = productsAffordable;
+        totalSellPrice = shopSellsPrice * orderSize;
+        console.log("second condition works ")
+    }
 
-    } else if (quantity > product.quantity && player1.money < productOrdered.quantity * productOrdered.sellPrice) {
-
-        console.log("you have asked for more than we have in stock - but you don't have enough money to buy all of that")
-
-
-    } else if (player1.money < shopSellsPrice) {
-        totalSellPrice = 0
-
-        return ("you can't afford that")
+    else if (orderSize > product.quantity) {
+        console.log("first ordersize")
+        console.log("the third condition works")
+        console.log(orderSize)
+        orderSize = product.quantity
+        totalSellPrice = shopSellsPrice * orderSize
+        console.log("is this smaller? ")
+        console.log(orderSize)
+        return {
+            orderSize: orderSize,
+            totalSellPrice: totalSellPrice
+        }
     }
 
 
-    console.log("the shop will sell")
-    return totalSellPrice
+
+
+
+
+    console.log("the shop will sell - (make order shop sell function)")
+    return {
+        orderSize: orderSize,
+        totalSellPrice: totalSellPrice
+    }
 
 };
-// console.log(makeOrderShopSell("Also Apples Shop", "apple", 5));
+console.log(makeOrderShopSell("Mainly Mango Shop", "mango", 2));
 
 // next task is to change shop quantity and money according to price and player stock and quantity 
 
-const completeOrderShopSell = function (shopName, productName, quantity) {
+const completeOrderShopSell = function (shopName, productName, orderSize) {
 
     const shop = findShop(shopName);
-    const product = findProduct(findShop, shopName, productName);
-    const shopSellsPrice = setSellPrice(findProduct, shopName, productName);
-    const totalSellPrice = makeOrderShopSell(shopName, productName, quantity) //didn't need callback here
+    const product = findProduct(shopName, productName);
+    const shopSellsPrice = setSellPrice(shopName, productName);
+    const totalSellPrice = makeOrderShopSell(shopName, productName, orderSize) //didn't need callback here
 
 
-
+    console.log("shop")
     console.log(shop)
+    console.log("product")
     console.log(product)
+    console.log("shop.money")
     console.log(shop.money)
+    console.log("shopSellsPrice")
     console.log(shopSellsPrice)
-    console.log(quantity)
-    console.log(totalSellPrice)
+    console.log("orderSize")
+    console.log(orderSize)
+    console.log("totalSellPrice")
+    console.log("totalSellPrice.ordersize")
+    console.log(totalSellPrice.orderSize)
+    console.log("totalSellPrice.totalSellPrice")
+    console.log(totalSellPrice.totalSellPrice)
+    console.log("player.money")
+    console.log(player1.money)
 
-    let shopMoneyChange = shop.money + totalSellPrice;
-    let shopQuantityChange = product.quantity - quantity;
+    shop.money = shop.money + totalSellPrice.totalSellPrice;
+    product.quantity = product.quantity - orderSize;
 
-    console.log(shopMoneyChange)
-    console.log(shopQuantityChange)
+    console.log("shop.money")
+    console.log(shop.money)
+    console.log("product.quantity")
+    console.log(product.quantity)
 
-    return "this worked"
+
+
+    return 5
+
 
 
 }
 
-console.log(completeOrderShopSell("Also Apples Shop", "apple", 20))
-// const playerSells = function() {
+console.log(completeOrderShopSell("Mainly Mango Shop", "mango", 1))
 
-
-// }
