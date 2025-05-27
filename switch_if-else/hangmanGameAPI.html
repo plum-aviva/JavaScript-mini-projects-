@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hangman</title>
     <link rel="stylesheet" href="switch_if-else.css" />
-    <script src="hangmanGameAPI.js"></script>
+    <script src="hangmanGameAPI.js" defer></script>
   </head>
   <body>
     <p>fetched word</p>
@@ -16,9 +16,7 @@
     <p id="answerArea"></p>
     <p>guess area</p>
     <input maxlength="1" id="letterChoice" placeholder="guess a letter" />
-    <button id="submitGuess" onclick="selectLetter()" type="submit">
-      Submit Guess
-    </button>
+    <button id="submitGuess" type="submit">Submit Guess</button>
     <p>correct guess area</p>
     <p id="CorrectGuessArea"></p>
     <p>wrong guess area</p>

@@ -1,9 +1,11 @@
 
-const url = 'https://random-word-api.herokuapp.com/word?length=5'
+const url = 'https://random-word-api.herokuapp.com/word?length=8'
 let correctGuessArea = [];
 let wrongGuessArea = [];
 let correctGuess;
 let wordArray;
+let copyOfWordArray;
+
 
 async function getWord() {
     const response = await fetch(url);
@@ -18,6 +20,8 @@ async function getWord() {
 async function wordIntoArray() {
     const answerWord = await getWord()
     wordArray = Array.from(answerWord)
+    copyOfWordArray = [...wordArray]
+    console.log(copyOfWordArray, "copy of word array")
     console.log(wordArray);
     document.getElementById("wordArray").innerHTML = wordArray
     for (letters in wordArray) {
@@ -26,15 +30,18 @@ async function wordIntoArray() {
         let letterBoxText = document.createTextNode(wordArray[letters]);
         letterBox.appendChild(letterBoxText);
         document.getElementById("answerArea").appendChild(letterBox);
-        letterBox.id = letterBox.innerHTML;
+        letterBox.className = letterBox.innerHTML;
+        console.log("class name", letterBox.className)
         console.log(letterBox);
 
     } return letterBox
 }
 wordIntoArray()
 
-let i = 1;
 
+
+
+document.getElementById("submitGuess").addEventListener('click', () => selectLetter());
 function selectLetter() {
 
 
@@ -47,24 +54,33 @@ function selectLetter() {
 
     // for (let i = 0; i < word.length; i++) {
 
-    let letterBox = document.getElementById(word[i])
+    // let letterBox = document.getElementById(word[i])
 
-    if (wordArray[i].includes(guess)) {
+    if (copyOfWordArray.includes(guess)) {
         correctGuessArea.push(guess);
+        const indexOfGuess = copyOfWordArray.indexOf(guess)
+        console.log(indexOfGuess)
+        copyOfWordArray.splice(indexOfGuess, 1);
+        console.log(wordArray, "new word array")
         console.log(correctGuessArea)
         document.getElementById("CorrectGuessArea").innerHTML = correctGuessArea;
         console.log(correctGuessArea)
-        rightGuess = document.getElementById(letterBox.id);
-        rightGuess.style.backgroundColor = "pink";
+        rightGuess = document.querySelectorAll(`.${guess}`);
+        for (let element of rightGuess) {
+            element.style.backgroundColor = "pink"
+        }
+
+
+
 
 
     } else {
         wrongGuessArea.push(guess)
         // let uniqueGuess = new Set(wrongGuessArea)
         // let wrongArray = Array.from(uniqueGuess)
-        document.getElementById("WrongGuessArea").innerHTML = guess;
+        document.getElementById("WrongGuessArea").innerHTML = wrongGuessArea;
     }
-
+    document.getElementById("letterChoice").value = "";
 }
 
 // }
